@@ -1,11 +1,12 @@
 import { cn } from "@/lib/utils"
-import mistral from "@/public/providers/mistral.png"
-import groq from "@/public/providers/groq.png"
-import perplexity from "@/public/providers/perplexity.png"
 import { ModelProvider } from "@/types"
-import { IconSparkles } from "@tabler/icons-react"
+import {
+  IconSparkles,
+  IconBrandOpenai,
+  IconBrandGoogle,
+  IconCpu
+} from "@tabler/icons-react"
 import { useTheme } from "next-themes"
-import Image from "next/image"
 import { FC, HTMLAttributes } from "react"
 import { AnthropicSVG } from "../icons/anthropic-svg"
 import { GoogleSVG } from "../icons/google-svg"
@@ -40,26 +41,22 @@ export const ModelIcon: FC<ModelIconProps> = ({
       )
     case "mistral":
       return (
-        <Image
+        <IconCpu
           className={cn(
             "rounded-sm p-1",
-            theme === "dark" ? "bg-white" : "border-DEFAULT border-black"
+            theme === "dark" ? "text-white" : "text-black"
           )}
-          src={mistral.src}
-          alt="Mistral"
           width={width}
           height={height}
         />
       )
     case "groq":
       return (
-        <Image
+        <IconCpu
           className={cn(
-            "rounded-sm p-0",
-            theme === "dark" ? "bg-white" : "border-DEFAULT border-black"
+            "rounded-sm p-1",
+            theme === "dark" ? "text-white" : "text-black"
           )}
-          src={groq.src}
-          alt="Groq"
           width={width}
           height={height}
         />
@@ -90,13 +87,11 @@ export const ModelIcon: FC<ModelIconProps> = ({
       )
     case "perplexity":
       return (
-        <Image
+        <IconSparkles
           className={cn(
             "rounded-sm p-1",
-            theme === "dark" ? "bg-white" : "border-DEFAULT border-black"
+            theme === "dark" ? "text-white" : "text-black"
           )}
-          src={perplexity.src}
-          alt="Mistral"
           width={width}
           height={height}
         />

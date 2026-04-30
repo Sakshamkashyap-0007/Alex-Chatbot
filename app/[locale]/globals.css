@@ -60,6 +60,12 @@
     --ring: 0 0% 63.9%;
 
     --radius: 0.5rem;
+
+    --neon-blue: #3b82f6;
+    --neon-pink: #3b82f6;
+    --neon-purple: #3b82f6;
+    --neon-green: #3b82f6;
+    --neon-orange: #3b82f6;
   }
 
   .dark {
@@ -101,4 +107,191 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Minimal product motion and compatibility utilities */
+@keyframes neon-pulse {
+  0%,
+  100% {
+    box-shadow: none;
+  }
+  50% {
+    box-shadow: none;
+  }
+}
+
+@keyframes neon-glow {
+  0%,
+  100% {
+    text-shadow: none;
+  }
+  50% {
+    text-shadow: none;
+  }
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Neon utility classes */
+.neon-border {
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: none;
+  animation: none;
+}
+
+.neon-text {
+  color: var(--neon-blue);
+  text-shadow: none;
+  animation: none;
+}
+
+.neon-gradient {
+  background: var(--neon-blue);
+  background-size: auto;
+  animation: none;
+}
+
+.neon-button {
+  background: var(--neon-blue);
+  border: none;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: none;
+}
+
+.neon-button:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.neon-input {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  padding: 12px 16px;
+  color: white;
+  transition: all 0.3s ease;
+  box-shadow: none;
+}
+
+.neon-input:focus {
+  outline: none;
+  border-color: var(--neon-blue);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.22);
+}
+
+.animate-float {
+  animation: none;
+}
+
+.animate-slide-in {
+  animation: slide-in 0.5s ease-out;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.3s ease-out;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.3s ease-out;
+}
+
+/* Dark mode neon enhancements */
+.dark .neon-border {
+  border-color: var(--neon-pink);
+  box-shadow:
+    0 0 5px var(--neon-pink),
+    0 0 10px var(--neon-pink),
+    inset 0 0 5px var(--neon-pink);
+}
+
+.dark .neon-text {
+  color: var(--neon-pink);
+  text-shadow:
+    0 0 5px var(--neon-pink),
+    0 0 10px var(--neon-pink),
+    0 0 20px var(--neon-pink);
+}
+
+.dark .neon-input {
+  background: rgba(0, 0, 0, 0.5);
+  border-color: var(--neon-purple);
+  box-shadow:
+    0 0 5px var(--neon-purple),
+    inset 0 0 5px rgba(189, 0, 255, 0.1);
+}
+
+.dark .neon-input:focus {
+  border-color: var(--neon-green);
+  box-shadow:
+    0 0 10px var(--neon-green),
+    0 0 20px var(--neon-green),
+    inset 0 0 10px rgba(0, 255, 157, 0.1);
+}
+
+/* Smooth transitions */
+/* Custom scrollbar for dark mode */
+.dark ::-webkit-scrollbar-thumb {
+  background-color: #3f4654;
+  box-shadow: none;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background-color: #596173;
+  box-shadow: none;
 }

@@ -1,0 +1,37 @@
+No valid locales in accept-language header: *
+Reverting to using defaultLocale: en
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+No valid locales in accept-language header: *
+Reverting to using defaultLocale: en
+No valid locales in accept-language header: *
+Reverting to using defaultLocale: en
+No valid locales in accept-language header: *
+Reverting to using defaultLocale: en
+
+<--- Last few GCs --->
+
+[11828:00000205F3DC6000]  1256628 ms: Scavenge (interleaved) 472.6 (520.5) -> 466.3 (537.0) MB, pooled: 0 MB, 2013.52 / 0.00 ms  (average mu = 0.674, current mu = 0.791) allocation failure; 
+
+FATAL ERROR: Committing semi space failed. Allocation failed - JavaScript heap out of memory
+----- Native stack trace -----
+
+ 1: 00007FF7F0EEC44F node::OnFatalError+1343
+ 2: 00007FF7F1B36217 v8::Function::NewInstance+423
+ 3: 00007FF7F1936C07 v8::base::AddressSpaceReservation::AddressSpaceReservation+322071
+ 4: 00007FF7F18CF62B v8::platform::DefaultPlatform::CurrentClockTimeMillis+490523
+ 5: 00007FF7F18A707E v8::platform::DefaultPlatform::CurrentClockTimeMillis+325230
+ 6: 00007FF7F19396A2 v8::base::AddressSpaceReservation::AddressSpaceReservation+332978
+ 7: 00007FF7F1938657 v8::base::AddressSpaceReservation::AddressSpaceReservation+328807
+ 8: 00007FF7F1949582 v8::internal::StrongRootAllocatorBase::deallocate_impl+15858
+ 9: 00007FF7F19490AB v8::internal::StrongRootAllocatorBase::deallocate_impl+14619
+10: 00007FF7F2DCF8ED v8::base::UnsignedDivisionByConstant<unsigned __int64>+2794685
+11: 00007FF7F19346D0 v8::base::AddressSpaceReservation::AddressSpaceReservation+312544
+12: 00007FF7F194EFEE X509_STORE_set_cleanup+5310
+13: 00007FF7F195AD78 uv_timer_set_repeat+19096
+14: 00007FF7F197227C uv_timer_set_repeat+114588
+15: 00007FF7F1753141 v8::TypecheckWitness::TypecheckWitness+106305
+16: 00007FF7F1751EBC v8::TypecheckWitness::TypecheckWitness+101564
+17: 00007FF7F153BF98 v8::String::Utf8Value::~Utf8Value+205288
+18: 00000205AFE775FA 

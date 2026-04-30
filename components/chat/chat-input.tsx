@@ -180,7 +180,7 @@ export const ChatInput: FC<ChatInputProps> = ({}) => {
                 )
               }
             >
-              <div className="flex cursor-pointer items-center justify-center space-x-1 rounded-lg bg-purple-600 px-3 py-1 hover:opacity-50">
+              <div className="flex cursor-pointer items-center justify-center space-x-1 rounded-lg bg-purple-600 px-3 py-1 transition-all duration-300 hover:scale-105 hover:opacity-50 hover:shadow-[0_0_15px_rgba(168,85,247,0.5)]">
                 <IconBolt size={20} />
 
                 <div>{tool.name}</div>
@@ -189,7 +189,7 @@ export const ChatInput: FC<ChatInputProps> = ({}) => {
           ))}
 
         {selectedAssistant && (
-          <div className="border-primary mx-auto flex w-fit items-center space-x-2 rounded-lg border p-1.5">
+          <div className="border-primary mx-auto flex w-fit items-center space-x-2 rounded-lg border p-1.5 transition-all duration-300 hover:shadow-[0_0_15px_rgba(0,243,255,0.3)]">
             {selectedAssistant.image_path && (
               <Image
                 className="rounded"
@@ -211,14 +211,14 @@ export const ChatInput: FC<ChatInputProps> = ({}) => {
         )}
       </div>
 
-      <div className="border-input relative mt-3 flex min-h-[60px] w-full items-center justify-center rounded-xl border-2">
+      <div className="border-input neon-border relative mt-3 flex min-h-[60px] w-full items-center justify-center rounded-xl border-2 transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,243,255,0.4)]">
         <div className="absolute bottom-[76px] left-0 max-h-[300px] w-full overflow-auto rounded-xl dark:border-none">
           <ChatCommandInput />
         </div>
 
         <>
           <IconCirclePlus
-            className="absolute bottom-[12px] left-3 cursor-pointer p-1 hover:opacity-50"
+            className="absolute bottom-[12px] left-3 cursor-pointer p-1 transition-all duration-300 hover:scale-110 hover:text-cyan-400 hover:opacity-50"
             size={32}
             onClick={() => fileInputRef.current?.click()}
           />
@@ -238,7 +238,7 @@ export const ChatInput: FC<ChatInputProps> = ({}) => {
 
         <TextareaAutosize
           textareaRef={chatInputRef}
-          className="ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring text-md flex w-full resize-none rounded-md border-none bg-transparent px-14 py-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+          className="px-14"
           placeholder={t(
             // `Ask anything. Type "@" for assistants, "/" for prompts, "#" for files, and "!" for tools.`
             `Ask anything. Type @  /  #  !`
@@ -253,17 +253,17 @@ export const ChatInput: FC<ChatInputProps> = ({}) => {
           onCompositionEnd={() => setIsTyping(false)}
         />
 
-        <div className="absolute bottom-[14px] right-3 cursor-pointer hover:opacity-50">
+        <div className="absolute bottom-[14px] right-3 cursor-pointer transition-all duration-300 hover:opacity-50">
           {isGenerating ? (
             <IconPlayerStopFilled
-              className="hover:bg-background animate-pulse rounded bg-transparent p-1"
+              className="hover:bg-background animate-pulse rounded bg-transparent p-1 transition-all duration-300 hover:scale-110 hover:text-red-400"
               onClick={handleStopMessage}
               size={30}
             />
           ) : (
             <IconSend
               className={cn(
-                "bg-primary text-secondary rounded p-1",
+                "bg-primary text-secondary rounded p-1 transition-all duration-300 hover:scale-110 hover:shadow-[0_0_15px_rgba(0,243,255,0.5)]",
                 !userInput && "cursor-not-allowed opacity-50"
               )}
               onClick={() => {

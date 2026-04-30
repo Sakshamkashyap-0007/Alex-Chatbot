@@ -182,7 +182,7 @@ export const Message: FC<MessageProps> = ({
   return (
     <div
       className={cn(
-        "flex w-full justify-center",
+        "flex w-full justify-center transition-all duration-300",
         message.role === "user" ? "" : "bg-secondary"
       )}
       onMouseEnter={() => setIsHovering(true)}
@@ -205,7 +205,7 @@ export const Message: FC<MessageProps> = ({
           {message.role === "system" ? (
             <div className="flex items-center space-x-4">
               <IconPencil
-                className="border-primary bg-primary text-secondary rounded border-DEFAULT p-1"
+                className="border-primary bg-primary text-secondary rounded border-DEFAULT p-1 transition-all duration-300 hover:scale-110 hover:shadow-[0_0_15px_rgba(0,243,255,0.5)]"
                 size={ICON_SIZE}
               />
 
@@ -220,7 +220,7 @@ export const Message: FC<MessageProps> = ({
                       width: `${ICON_SIZE}px`,
                       height: `${ICON_SIZE}px`
                     }}
-                    className="rounded"
+                    className="rounded transition-all duration-300 hover:scale-110 hover:shadow-[0_0_15px_rgba(0,243,255,0.5)]"
                     src={messageAssistantImage}
                     alt="assistant image"
                     height={ICON_SIZE}
@@ -240,7 +240,7 @@ export const Message: FC<MessageProps> = ({
                 )
               ) : profile?.image_url ? (
                 <Image
-                  className={`size-[32px] rounded`}
+                  className={`size-[32px] rounded transition-all duration-300 hover:scale-110 hover:shadow-[0_0_15px_rgba(0,243,255,0.5)]`}
                   src={profile?.image_url}
                   height={32}
                   width={32}
@@ -248,7 +248,7 @@ export const Message: FC<MessageProps> = ({
                 />
               ) : (
                 <IconMoodSmile
-                  className="bg-primary text-secondary border-primary rounded border-DEFAULT p-1"
+                  className="bg-primary text-secondary border-primary rounded border-DEFAULT p-1 transition-all duration-300 hover:scale-110 hover:shadow-[0_0_15px_rgba(0,243,255,0.5)]"
                   size={ICON_SIZE}
                 />
               )}
@@ -310,10 +310,10 @@ export const Message: FC<MessageProps> = ({
         </div>
 
         {fileItems.length > 0 && (
-          <div className="border-primary mt-6 border-t pt-4 font-bold">
+          <div className="border-primary mt-6 border-t pt-4 font-bold transition-all duration-300 hover:shadow-[0_0_10px_rgba(0,243,255,0.3)]">
             {!viewSources ? (
               <div
-                className="flex cursor-pointer items-center text-lg hover:opacity-50"
+                className="flex cursor-pointer items-center text-lg transition-all duration-300 hover:opacity-50"
                 onClick={() => setViewSources(true)}
               >
                 {fileItems.length}
@@ -325,7 +325,7 @@ export const Message: FC<MessageProps> = ({
             ) : (
               <>
                 <div
-                  className="flex cursor-pointer items-center text-lg hover:opacity-50"
+                  className="flex cursor-pointer items-center text-lg transition-all duration-300 hover:opacity-50"
                   onClick={() => setViewSources(false)}
                 >
                   {fileItems.length}
@@ -356,7 +356,7 @@ export const Message: FC<MessageProps> = ({
                         .map((fileItem, index) => (
                           <div
                             key={index}
-                            className="ml-8 mt-1.5 flex cursor-pointer items-center space-x-2 hover:opacity-50"
+                            className="ml-8 mt-1.5 flex cursor-pointer items-center space-x-2 transition-all duration-300 hover:opacity-50"
                             onClick={() => {
                               setSelectedFileItem(fileItem)
                               setShowFileItemPreview(true)
@@ -377,13 +377,13 @@ export const Message: FC<MessageProps> = ({
         )}
 
         <div className="mt-3 flex flex-wrap gap-2">
-          {message.image_paths.map((path, index) => {
+          {message.image_paths?.map((path, index) => {
             const item = chatImages.find(image => image.path === path)
 
             return (
               <Image
                 key={index}
-                className="cursor-pointer rounded hover:opacity-50"
+                className="cursor-pointer rounded transition-all duration-300 hover:scale-105 hover:opacity-50 hover:shadow-[0_0_15px_rgba(0,243,255,0.5)]"
                 src={path.startsWith("data") ? path : item?.base64}
                 alt="message image"
                 width={300}

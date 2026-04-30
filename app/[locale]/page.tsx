@@ -1,28 +1,28 @@
 "use client"
 
 import { ChatbotUISVG } from "@/components/icons/chatbotui-svg"
-import { IconArrowRight } from "@tabler/icons-react"
 import { useTheme } from "next-themes"
-import Link from "next/link"
+import { useEffect } from "react"
+import { useRouter } from "next/navigation"
 
 export default function HomePage() {
   const { theme } = useTheme()
+  const router = useRouter()
+
+  useEffect(() => {
+    // Redirect to a default chat page
+    router.push("/default/chat")
+  }, [router])
 
   return (
-    <div className="flex size-full flex-col items-center justify-center">
-      <div>
+    <div className="animate-fade-in flex size-full flex-col items-center justify-center">
+      <div className="animate-float">
         <ChatbotUISVG theme={theme === "dark" ? "dark" : "light"} scale={0.3} />
       </div>
 
-      <div className="mt-2 text-4xl font-bold">Chatbot UI</div>
+      <div className="neon-text mt-2 text-4xl font-bold">Alex</div>
 
-      <Link
-        className="mt-4 flex w-[200px] items-center justify-center rounded-md bg-blue-500 p-2 font-semibold"
-        href="/login"
-      >
-        Start Chatting
-        <IconArrowRight className="ml-1" size={20} />
-      </Link>
+      <div className="mt-4 text-lg">Loading...</div>
     </div>
   )
 }
