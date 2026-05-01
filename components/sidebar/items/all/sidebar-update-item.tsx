@@ -168,7 +168,14 @@ export const SidebarUpdateItem: FC<SidebarUpdateItemProps> = ({
 
       fetchData()
     }
-  }, [isOpen])
+  }, [
+    isOpen,
+    contentType,
+    fetchDataFunctions,
+    fetchSelectedWorkspaces,
+    item.id,
+    workspaces.length
+  ])
 
   const renderState = {
     chats: null,

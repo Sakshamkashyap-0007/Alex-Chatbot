@@ -282,7 +282,7 @@ export const ProfileSettings: FC<ProfileSettingsProps> = ({}) => {
 
       setLoadingUsername(false)
     }, 500),
-    []
+    [setUsernameAvailable, setLoadingUsername]
   )
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
