@@ -42,8 +42,7 @@ export default async function Login({
       .single()
 
     if (!homeWorkspace) {
-      throw new Error(error.message)
-    }
+          throw new Error(error?.message || "Something went wrong")    }
 
     return redirect(`/${homeWorkspace.id}/chat`)
   }
