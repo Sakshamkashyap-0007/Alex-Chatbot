@@ -15,14 +15,26 @@ export default function HomePage() {
   }, [router])
 
   return (
-    <div className="animate-fade-in flex size-full flex-col items-center justify-center">
-      <div className="animate-float">
-        <ChatbotUISVG theme={theme === "dark" ? "dark" : "light"} scale={0.3} />
+    <div className="bg-background flex size-full flex-col items-center justify-center px-6">
+      <div className="flex w-full max-w-sm flex-col items-center gap-6 text-center">
+        <div className="border-border bg-card flex size-16 items-center justify-center rounded-lg border shadow-sm">
+          <ChatbotUISVG
+            theme={theme === "dark" ? "dark" : "light"}
+            scale={0.18}
+          />
+        </div>
+
+        <div className="space-y-2">
+          <h1 className="text-foreground text-3xl font-semibold">Alex</h1>
+          <p className="text-muted-foreground text-sm">
+            Preparing your workspace
+          </p>
+        </div>
+
+        <div className="bg-muted h-1 w-full overflow-hidden rounded-full">
+          <div className="bg-foreground h-full w-1/3 animate-pulse rounded-full" />
+        </div>
       </div>
-
-      <div className="neon-text mt-2 text-4xl font-bold">Alex</div>
-
-      <div className="mt-4 text-lg">Loading...</div>
     </div>
   )
 }
