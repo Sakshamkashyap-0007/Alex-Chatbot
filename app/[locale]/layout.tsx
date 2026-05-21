@@ -3,11 +3,9 @@ import { Providers } from "@/components/utility/providers"
 import TranslationsProvider from "@/components/utility/translations-provider"
 import initTranslations from "@/lib/i18n"
 import { Metadata, Viewport } from "next"
-import { Inter } from "next/font/google"
 import { ReactNode } from "react"
 import "./globals.css"
 
-const inter = Inter({ subsets: ["latin"] })
 const APP_NAME = "Alex"
 const APP_DEFAULT_TITLE = "Alex"
 const APP_TITLE_TEMPLATE = "%s - Alex"
@@ -73,7 +71,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
+      <body className="font-sans">
         <Providers attribute="class" defaultTheme="dark">
           <TranslationsProvider
             namespaces={i18nNamespaces}

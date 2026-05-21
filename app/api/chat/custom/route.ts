@@ -29,7 +29,7 @@ export async function POST(request: Request) {
       .single()
 
     if (!customModel) {
-      throw new Error(error.message)
+      throw new Error(error?.message || "Custom model not found")
     }
 
     const custom = new OpenAI({
@@ -44,7 +44,7 @@ export async function POST(request: Request) {
       stream: true
     })
 
-    const stream = OpenAIStream(response)
+    const stream = OpenAIStream(response as any)
 
     return new StreamingTextResponse(stream)
   } catch (error: any) {

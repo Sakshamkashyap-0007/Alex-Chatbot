@@ -81,7 +81,6 @@ import { convertBlobToBase64 } from "@/lib/blob-to-b64"
 import { Tables, TablesUpdate } from "@/supabase/types"
 import { CollectionFile, ContentType, DataItemType } from "@/types"
 import { FC, useContext, useEffect, useRef, useState } from "react"
-import profile from "react-syntax-highlighter/dist/esm/languages/hljs/profile"
 import { toast } from "sonner"
 import { SidebarDeleteItem } from "./sidebar-delete-item"
 
@@ -152,31 +151,6 @@ export const SidebarUpdateItem: FC<SidebarUpdateItemProps> = ({
     Tables<"tools">[]
   >([])
 
-  useEffect(() => {
-    if (isOpen) {
-      const fetchData = async () => {
-        if (workspaces.length > 1) {
-          const workspaces = await fetchSelectedWorkspaces()
-          setStartingWorkspaces(workspaces)
-          setSelectedWorkspaces(workspaces)
-        }
-
-        const fetchDataFunction = fetchDataFunctions[contentType]
-        if (!fetchDataFunction) return
-        await fetchDataFunction(item.id)
-      }
-
-      fetchData()
-    }
-  }, [
-    isOpen,
-    contentType,
-    fetchDataFunctions,
-    fetchSelectedWorkspaces,
-    item.id,
-    workspaces.length
-  ])
-
   const renderState = {
     chats: null,
     presets: null,
@@ -214,7 +188,11 @@ export const SidebarUpdateItem: FC<SidebarUpdateItemProps> = ({
     collections: async (collectionId: string) => {
       const collectionFiles =
         await getCollectionFilesByCollectionId(collectionId)
-      setStartingCollectionFiles(collectionFiles.files)
+      const files = collectionFiles.files.map(file => ({
+        ...file,
+        file: null
+      }))
+      setStartingCollectionFiles(files)
       setSelectedCollectionFiles([])
     },
     assistants: async (assistantId: string) => {
@@ -277,6 +255,24 @@ export const SidebarUpdateItem: FC<SidebarUpdateItemProps> = ({
 
     return workspaces
   }
+
+  useEffect(() => {
+    if (isOpen) {
+      const fetchData = async () => {
+        if (workspaces.length > 1) {
+          const workspaces = await fetchSelectedWorkspaces()
+          setStartingWorkspaces(workspaces)
+          setSelectedWorkspaces(workspaces)
+        }
+
+        const fetchDataFunction = fetchDataFunctions[contentType]
+        if (!fetchDataFunction) return
+        await fetchDataFunction(item.id)
+      }
+
+      fetchData()
+    }
+  }, [isOpen, contentType, item.id, workspaces.length])
 
   const handleWorkspaceUpdates = async (
     startingWorkspaces: Tables<"workspaces">[],
@@ -380,8 +376,6 @@ export const SidebarUpdateItem: FC<SidebarUpdateItemProps> = ({
       collectionId: string,
       updateState: TablesUpdate<"assistants">
     ) => {
-      if (!profile) return
-
       const { ...rest } = updateState
 
       const filesToAdd = selectedCollectionFiles.filter(

@@ -1,33 +1,7 @@
+  ▲ Next.js 14.2.35
+  - Local:        http://localhost:3003
 
-> chatbot-ui@2.0.0 dev
-> next dev -p 3003
-
-   ▲ Next.js 14.1.0
-   - Local:        http://localhost:3003
-   - Environments: .env.local
-
+ ✓ Starting...
 > [PWA] PWA support is disabled
 > [PWA] PWA support is disabled
- ✓ Ready in 17.4s
- ○ Compiling /middleware ...
- ✓ Compiled /middleware in 3s (156 modules)
- ○ Compiling /[locale]/default/chat ...
- ✓ Compiled /[locale]/default/chat in 22.5s (662 modules)
- ✓ Compiled in 3.3s (322 modules)
- ✓ Compiled in 2.6s (322 modules)
- ✓ Compiled in 1683ms (322 modules)
- ✓ Compiled in 1107ms (322 modules)
- ○ Compiling /api/chat/default ...
- ✓ Compiled /api/chat/default in 4.5s (319 modules)
- ✓ Compiled in 2.5s (322 modules)
- ✓ Compiled in 5.4s (641 modules)
- ✓ Compiled in 6.4s (282 modules)
- ✓ Compiled in 2.2s (282 modules)
- ✓ Compiled in 3.3s (282 modules)
- ✓ Compiled in 5.8s (282 modules)
- ✓ Compiled in 4.3s (282 modules)
- ✓ Compiled in 2.4s (282 modules)
- ✓ Compiled in 2.2s (282 modules)
- ○ Compiling /[locale]/default/chat ...
- ✓ Compiled /[locale]/default/chat in 80.2s (591 modules)
-[?25h
+ ✓ Ready in 5.9s

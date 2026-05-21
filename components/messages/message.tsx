@@ -178,6 +178,13 @@ export const Message: FC<MessageProps> = ({
     }
     return acc
   }, fileAccumulator)
+  const summarizedFiles = Object.values(fileSummary) as Array<{
+    id: string
+    name: string
+    count: number
+    type: string
+    description: string
+  }>
 
   return (
     <div
@@ -336,7 +343,7 @@ export const Message: FC<MessageProps> = ({
                 </div>
 
                 <div className="mt-3 space-y-4">
-                  {Object.values(fileSummary).map((file, index) => (
+                  {summarizedFiles.map((file, index) => (
                     <div key={index}>
                       <div className="flex items-center space-x-2">
                         <div>

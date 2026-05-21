@@ -75,7 +75,17 @@ export async function POST(request: Request) {
   const availableProviders = PROVIDERS.filter(provider => provider.apiKey)
 
   if (availableProviders.length === 0) {
-    return new Response("No LLM API key found in .env.local", { status: 400 })
+    return streamPlainText(
+      [
+        "I can't answer with an AI model yet because no LLM API key is configured.",
+        "",
+        "Create a `.env.local` file in the project root and add one provider key, for example:",
+        "",
+        "OPENAI_API_KEY=your_key_here",
+        "",
+        "Then restart the dev server."
+      ].join("\n")
+    )
   }
 
   const failures: string[] = []
@@ -112,7 +122,7 @@ async function createProviderTextSource(
   provider: ProviderConfig,
   chatSettings: ChatSettings,
   messages: ChatMessage[]
-) {
+): Promise<AsyncGenerator<string>> {
   switch (provider.name) {
     case "openai":
       return createOpenAICompatibleTextSource({
@@ -165,6 +175,8 @@ async function createProviderTextSource(
         temperature: chatSettings.temperature
       })
   }
+
+  throw new Error(`Unsupported provider: ${provider.name}`)
 }
 
 async function createOpenAICompatibleTextSource({
@@ -303,4 +315,22 @@ function streamText(source: AsyncGenerator<string>, firstChunk: string) {
       "Content-Type": "text/plain; charset=utf-8"
     }
   })
+}
+
+function streamPlainText(content: string) {
+  const encoder = new TextEncoder()
+
+  return new Response(
+    new ReadableStream({
+      start(controller) {
+        controller.enqueue(encoder.encode(content))
+        controller.close()
+      }
+    }),
+    {
+      headers: {
+        "Content-Type": "text/plain; charset=utf-8"
+      }
+    }
+  )
 }
